@@ -2,11 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createStore } from "redux";
-import { type } from "@testing-library/user-event/dist/type";
 import { Provider } from "react-redux";
 
 const defaultState = {
-  cash: 0,
+  cash: 5,
 };
 
 const reducer = (state = defaultState, action) => {
