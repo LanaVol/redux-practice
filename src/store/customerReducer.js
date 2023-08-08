@@ -21,7 +21,7 @@ export const customerReducer = (state = defaultState, action) => {
   }
 };
 
-// щоб в dispatch кожен раз не передавати об'єкт, а викликати дані функції
+// ActionCreator-функції, щоб в dispatch кожен раз не передавати об'єкт, а викликати дані функції
 export const addCustomerAction = (payload) => ({ type: ADD_CUSTOMER, payload });
 export const removeCustomerAction = (payload) => ({
   type: REMOVE_CUSTOMER,
