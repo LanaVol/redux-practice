@@ -1,6 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import { increment, decrement } from "./toolkitRedux/toolkitReducer";
+import {
+  addTodo,
+  decrement,
+  increment,
+  removeLastTodo,
+} from "./toolkitRedux/toolkitSlice";
+
+// import { increment, decrement } from "./toolkitRedux/toolkitReducer";
 // import {
 //   increment,
 //   decrement,
@@ -15,8 +22,17 @@ import { increment, decrement } from "./toolkitRedux/toolkitReducer";
 // import { fetchCustomers } from "./asyncActions/customers";
 // ************************************PART ONE OF REDUX PRACTISE
 
+const addAsyncTodo = () => {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch(addTodo("ASYNC TODO"));
+    }, 2000);
+  };
+};
+
 function App() {
   const count = useSelector((state) => state.toolkit.count);
+  const todos = useSelector((state) => state.toolkit.todos);
   // const count = useSelector((state) => state.main.count);
   // const todos = useSelector((state) => state.main.todos);
   const dispatch = useDispatch();
@@ -26,14 +42,17 @@ function App() {
       <h1>Лічильник: {count}</h1>
       <button onClick={() => dispatch(increment())}>Інкремент</button>
       <button onClick={() => dispatch(decrement())}>Декремент</button>
-      {/* <button onClick={() => dispatch(removeLastTodo())}>
+      <button onClick={() => dispatch(removeLastTodo())}>
         Видалити останній туду
       </button>
-      <button onClick={() => dispatch(addTodo(prompt()))}>Додати туду</button> */}
+      <button onClick={() => dispatch(addTodo(prompt()))}>Додати туду</button>
+      <button onClick={() => dispatch(addAsyncTodo())}>
+        Додати Async Todo
+      </button>
       <ul>
-        {/* {todos.map((todo) => (
+        {todos.map((todo) => (
           <li key={todo}>{todo}</li>
-        ))} */}
+        ))}
       </ul>
     </div>
   );
